@@ -11,4 +11,4 @@ Conversion tool with built-in query function - "KML-Search-and-Convert"
 # See Shiny index for live samples (subject to change):
 http://ec2-34-224-91-99.compute-1.amazonaws.com:3838/sample-apps/
 
-# See http://www.transscendsurvival.org/ for parent blog
+# See http://www.transscendsurvival.org/ for more info on my blog
