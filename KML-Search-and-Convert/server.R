@@ -4,6 +4,7 @@ server <- function(input, output) {
     dat <- input$file
     datum <- dat$datapath
     kml_layers <- ogrListLayers(datum)
+    ### NOTE - Removes all duplicate layers in favor of OGR function
     kml_cleaned <- kml_layers[!(duplicated(kml_layers) | duplicated(kml_layers, fromLast = TRUE))]
     it <- as.numeric(length(kml_cleaned))
     # iterate to deal with multiple layers
