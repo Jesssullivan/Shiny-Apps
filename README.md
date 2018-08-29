@@ -3,8 +3,8 @@ Shiny (R) Apps- spun from my FieldProcessing Repo
 
 Specific to Shiny Apps (Jess Sullivan) for deployment on AWS Ubuntu
 
-Live services with minimal UI:
-
+Services with minimal UI:
+#
 Point Count Data Cleaning Template - "clean" 
 #
 Conversion tool with built-in query function - "KML-Search-and-Convert"  |  NOTE: Plans to divide this app into 2 seperate "widgets"
