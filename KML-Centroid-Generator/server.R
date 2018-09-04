@@ -1,7 +1,10 @@
 server <- function(input, output) {
+rt <- function () { 
   observeEvent(input$go, {
-    dat <- input$file
+#  setwd("~/Shiny-Apps-master/Shiny-Apps-master/KML-Centroid-Generator"
+     dat <- input$file
     datum <- dat$datapath
+ #   datum <- "FullKML.kml"
     # read kml section
     kml_layers <- ogrListLayers(datum)
     kml_cleaned <- kml_layers[!(duplicated(kml_layers))]
@@ -12,7 +15,6 @@ server <- function(input, output) {
       print(layer_i)
       return(layer_i)
     }
-    st_read(datum, "CSWA Y/O-A")
     # process kml with layers
     data <- data.frame(sapply(1:it, iterate_layers))
     # extract centroid with WGS84 CRS
@@ -27,20 +29,20 @@ server <- function(input, output) {
   }
   # generate centroid with geosphere function from table of coords
   i <- 1:lengthdata
-  cent_in <- data.frame(t(sapply(i, get_cent)))
+  cent_in <- data.frame(t(as.matrix(sapply(i, get_cent))))
   cent_sp <- SpatialPointsDataFrame(centroid(cent_in), df, proj4string=CRS("+proj=longlat +datum=WGS84"))
     # write out lat long as a new kml file
-  results <- writeOGR(cent_sp, dsn = "KML_Centroid.kml", layer = "", driver="KML")
-   # Name will not be used: dsn is filename to client
-    output$downloadcent <- downloadHandler(filename = function() {
-      paste("Centroid-", Sys.Date(), ".kml", sep="")
-    },
-      content = function(con) {
-      write(results, con)
-      })
-    })
+  writeOGR(cent_sp, dsn = "kml.kml", layer = "", driver="KML")
+  })
+  output$down <- downloadHandler(filename = "Centroid_File.kml", 
+                                 content = function(file) {
+                                  file.copy("kml.kml", file)
+                                 })
   }
-
+observeEvent(input$go,
+                    rt()
+                    )
+}
 
 
 

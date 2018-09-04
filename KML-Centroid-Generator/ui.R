@@ -9,8 +9,8 @@ ui <- fluidPage(
     ),
       sidebarPanel(
         actionButton("go", "Click to Run..."),
-        downloadButton("downloadcent", "Click to download your new centroid as a KML point!"),
-        width = 12)
+        downloadButton("down","Click to download your new centroid as a KML point!"),
+        width = 12
       )
+  )
 )
-
