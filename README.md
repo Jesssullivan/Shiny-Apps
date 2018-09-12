@@ -5,10 +5,14 @@ Specific to Shiny Apps (Jess Sullivan) for deployment on AWS Ubuntu
 
 Services with minimal UI:
 #
-Point Count Data Cleaning Template - "clean" 
+"clean" - Point Count Data Cleaning Template
 #
-Conversion tool with built-in query function - "KML-Search-and-Convert"  |  NOTE: Plans to divide this app into 2 seperate "widgets"
+Centroid_KML - "KML-Centroid-Generator" 
 #
-KML Centroid Generator - "KML-Centroid-Generator" 
-
-# See http://www.transscendsurvival.org/ for more info on my blog
+KML2CSV - converts KML (XML) to .csv spreadsheet format
+#
+KMLSubsetFilter - from a KML file, this tool returns a subset KML based on two query strings (searches the description field of the KML)
+#
+# These are live (9.12.18) at http://kml.jessdev.org on an AWS Ubuntu shiny server
+#
+# See http://www.transscendsurvival.org/ for related info on my blog
