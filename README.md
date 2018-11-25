@@ -16,8 +16,8 @@ KMLSubsetFilter - from a KML file, this tool returns a subset KML based on two q
 #
 "clean" - Point Count Data Cleaning Template
 # 
-# Update: these are now live via https://www.shinyapps.io/, wrapped in a Node.JS app running in Heroku here:
+# Update (11.25.18): these are now live via https://www.shinyapps.io/, wrapped in a Node.JS app running in Heroku here:
 # https://kml-tools.herokuapp.com/
-```These are live (9.12.18) at http://kml.jessdev.org on an AWS Ubuntu shiny server```
+```Dep.:  http://kml.jessdev.org on an AWS Ubuntu shiny server```
 #
 # See http://www.transscendsurvival.org/ for related info on my blog
