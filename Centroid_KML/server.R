@@ -1,3 +1,10 @@
+library(shiny)
+library(rgdal)
+library(sf)
+library(geosphere)
+library(plyr)
+library(tidyverse)
+
 server <- function(input, output) {
   observeEvent(input$go, {
     dat <- input$file
