@@ -5,7 +5,9 @@ Specific to Shiny Apps (Jess Sullivan)
 
 Services with minimal UI:
 #
-KML2SHP_Converter- generates a zip archive of shape files based on KML file layers
+Raster2stl - converts raster data (image- a .jpg taken from a DEM file for instance) to a 3d STL file showing exagerated terrain.  (added 3/6/19)
+#
+KML2SHP_Converter - generates a zip archive of shape files based on KML file layers
 #
 Centroid_KML - "KML-Centroid-Generator" 
 #
@@ -16,7 +18,7 @@ KMLSubsetFilter - from a KML file, this tool returns a subset KML based on two q
 #
 "clean" - Point Count Data Cleaning Template
 # 
-# Update (11.25.18): these are now live via https://www.shinyapps.io/, wrapped in a Node.JS app running in Heroku here:
+# Visit these tools- wrapped in a Node.JS app running in Heroku- here:
 # https://kml-tools.herokuapp.com/
 ```Dep.:  http://kml.jessdev.org on an AWS Ubuntu shiny server```
 #
