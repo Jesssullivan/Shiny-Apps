@@ -1,5 +1,13 @@
 # **Web Apps in R / Shiny**
 
+Simple web utilities for GIS tasks.
+
+#
+Visit the [**single threaded example here**](https://kml-tools.herokuapp.com/); (Not load balanced.)  These are wrapped in a Node.JS application on [ /Node_App ] Heroku, which loads each utility through [shinyapps.io](https://www.shinyapps.io/).  These functions are hosted entirely through (Heroku / shinyapps) free tiers.  (direct link: https://kml-tools.herokuapp.com/)
+#
+```
+8/6/19:  init Dockerfile for load balancing in GCP
+```
 #
 Raster2stl - converts raster data (image- a .jpg taken from a DEM file for instance) to a 3d STL file showing exagerated terrain.  (added 3/6/19)
 #
@@ -12,11 +20,4 @@ KML2CSV - converts KML (XML) to .csv spreadsheet format
 KMLSubsetFilter - from a KML file, this tool returns a subset KML based on two query strings (searches the description field of the KML)
 #
 
-Visit a **single threaded example** of these tools- wrapped in a Node.JS [ /Node_App/ ] running in on Heroku:  *https://kml-tools.herokuapp.com/*
-
-```
-8/6/19:  init Dockerfile for  load balancing in GCP
-```
-
-
-See http://www.transscendsurvival.org/ for related info on my blog
+*See http://www.transscendsurvival.org/ for related info on my blog*
