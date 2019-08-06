@@ -1,4 +1,4 @@
-#Web Apps in R / Shiny
+# **Web Apps in R / Shiny**
 
 #
 Raster2stl - converts raster data (image- a .jpg taken from a DEM file for instance) to a 3d STL file showing exagerated terrain.  (added 3/6/19)
@@ -12,14 +12,11 @@ KML2CSV - converts KML (XML) to .csv spreadsheet format
 KMLSubsetFilter - from a KML file, this tool returns a subset KML based on two query strings (searches the description field of the KML)
 #
 
-# Visit a **single threaded example** of these tools- wrapped in a Node.JS [ /Node_App/ ] running in on Heroku:
-# https://kml-tools.herokuapp.com/
+Visit a **single threaded example** of these tools- wrapped in a Node.JS [ /Node_App/ ] running in on Heroku:  *https://kml-tools.herokuapp.com/*
 
 ```
-Previous versions of kml-tools have run on AWS, GCP, etc.
+8/6/19:  init Dockerfile for  load balancing in GCP
 ```
 
-```
-8/6/19:  init Dockerfile for  load balancing in GCP 
-```
-# See http://www.transscendsurvival.org/ for related info on my blog
+
+See http://www.transscendsurvival.org/ for related info on my blog
