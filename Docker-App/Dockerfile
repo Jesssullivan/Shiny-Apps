@@ -7,7 +7,7 @@ RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker
 && yes | bash ./Shiny_Docker-Depends.sh
 
 RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/pkgs.R \
-&& pkgs.r -r 'http://cran.rstudio.com' \
+&& pkgs.R -r 'http://cran.rstudio.com' \
     googleAuthR \
     ## clean up
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
