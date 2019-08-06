@@ -2,10 +2,12 @@ FROM rocker/shiny
 
 MAINTAINER Jess (jess@sulliwood.org)
 
-# install stuff
-RUN yes | bash ./Shiny_Docker-Depends.sh
+# get install files from github
+RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/Shiny_Docker-Depends.sh \
+&& yes | bash ./Shiny_Docker-Depends.sh
 
-RUN pkgs.r -r 'http://cran.rstudio.com' \
+RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/pkgs.r \
+&& pkgs.r -r 'http://cran.rstudio.com' \
     googleAuthR \
     ## clean up
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
