@@ -6,7 +6,7 @@ MAINTAINER Jess (jess@sulliwood.org)
 RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/Shiny_Docker-Depends.sh \
 && yes | bash ./Shiny_Docker-Depends.sh
 
-RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/pkgs.r \
+RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker-App/pkgs.R \
 && pkgs.r -r 'http://cran.rstudio.com' \
     googleAuthR \
     ## clean up
