@@ -18,9 +18,3 @@ server <- function(input, output) {
     })
   })
 }
-
-
-
-
-
-
