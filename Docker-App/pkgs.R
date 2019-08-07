@@ -1,1 +1,1 @@
-install.packages(c('shiny', 'rgdal', 'gdalUtils'))
+install.packages(c('','lattice','shiny', 'rgdal', 'gdalUtils'))
