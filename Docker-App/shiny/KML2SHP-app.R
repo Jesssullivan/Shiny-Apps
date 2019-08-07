@@ -6,7 +6,8 @@ library(rgdal)
 library(gdalUtils)
 
 ui <- fluidPage(
-  titlePanel("KML to SHP Converter"),
+  titlePanel(
+    "KML to SHP Converter"),
   sidebarLayout(
     mainPanel(
       fileInput("file", "Choose Your Input KML File", multiple = TRUE),
