@@ -2,25 +2,13 @@ const express = require('express');
 PORT = 8081;
 
 const logger = require('morgan');
-
 const app = express();
-
 const KML = require('jade').compileFile(__dirname + '/source/templates/KMLApps.jade');
-
-
 const bodyParser = require('body-parser');
-
-/* Optional/not needed */
-const path = require("path");
-
-/* Define MySQL locations */
-
-/* Global app.use bits */
 
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.json({ type: 'application/*+json' }));
-
 
 /* Site directory */
 
