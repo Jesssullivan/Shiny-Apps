@@ -14,4 +14,4 @@ RUN wget https://raw.githubusercontent.com/Jesssullivan/Shiny-Apps/master/Docker
 EXPOSE 8080
 
 COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
-COPY ./shiny/ /srv/shiny-server/
+COPY /shiny/ /srv/shiny-server/
