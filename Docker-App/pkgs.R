@@ -1,1 +1,2 @@
-install.packages(c('','lattice','shiny', 'rgdal', 'gdalUtils'))
+install.packages(c('Rcpp', 'utils', 'units', 'lattice','shiny'))
+install.packages(c('sp','sf', 'rgdal', 'gdalUtils'))

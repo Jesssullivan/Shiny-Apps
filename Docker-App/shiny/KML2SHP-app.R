@@ -4,6 +4,7 @@
 library(shiny)
 library(rgdal)
 library(gdalUtils)
+args <- commandArgs(trailingOnly = TRUE)
 
 ui <- fluidPage(
   titlePanel(
@@ -38,4 +39,4 @@ server <- function(input, output) {
   })
 }
 
-runApp(shinyApp(ui, server), port = as.integer(runif(1, min = 3000, max = 9999)))
+runApp(shinyApp(ui, server), port = as.numeric(args[1]))
