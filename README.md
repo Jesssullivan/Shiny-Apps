@@ -6,9 +6,9 @@ Simple web utilities for GIS tasks.
 
 
 Visit the [single threaded example here](https://kml-tools.herokuapp.com/); (Not load balanced.)  These are wrapped in a Node.JS application on Heroku, which loads each utility through [shinyapps.io](https://www.shinyapps.io/).  These functions are hosted entirely through (Heroku / shinyapps) free tiers.  (direct link: https://kml-tools.herokuapp.com/)
-#
-Visit /[Docker-App](https://github.com/Jesssullivan/Shiny-Apps/tree/master/Docker-App) for deployment in the GCP app engine; multi-user loads are percolating there.    
 
+#
+Visit /[Docker-App](https://github.com/Jesssullivan/Shiny-Apps/tree/master/Docker-App) for deployment in the GCP app engine. 
 #
 Raster2stl - converts raster data (image- a .jpg taken from a DEM file for instance) to a 3d STL file showing exagerated terrain.  (added 3/6/19)
 #
