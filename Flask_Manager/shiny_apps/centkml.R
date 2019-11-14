@@ -2,8 +2,6 @@ library(shiny)
 library(rgdal)
 library(sf)
 library(geosphere)
-library(plyr)
-library(tidyverse)
 
 args <- commandArgs(trailingOnly = TRUE)
 
