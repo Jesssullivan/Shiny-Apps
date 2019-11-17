@@ -1,6 +1,6 @@
-    
 
-*Moving to spawning R as worker threads, chopping out Shiny:*    
+  
+*Slowly moving toward spawning R only as worker threads, chopping out Shiny*    
 
 - upload / download, UI, http GET / POST, everything managed from Flask
 - templating is done with pug/jade
@@ -11,4 +11,3 @@
 ```bash
 flask run 
 ```
-
