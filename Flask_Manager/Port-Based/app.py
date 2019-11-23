@@ -71,7 +71,6 @@ def start_r(app_choice):
     bash_run(str('Rscript shiny_apps/' + app_choice + '.R ' + str(port_num)))
     Active_Ports[port_num] = time.time()
     time.sleep(2)
-
     return redirect(str(base_url + ':' + str(port_num)))
 
 
