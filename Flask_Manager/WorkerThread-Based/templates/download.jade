@@ -7,4 +7,9 @@ html
 br
 
 html
-    <a href=!{download} target="blank"> <button class='btn btn-default'>Download!</button></a>
+    <form action="/download" method="post" name=name enctype="multipart/form-data">
+    <input hidden type=text value=!{tokenID} name='name' />
+    <input type="submit" />
+    </form>
+
+

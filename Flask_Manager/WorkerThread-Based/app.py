@@ -1,13 +1,8 @@
-from flask import Flask, redirect, flash, render_template, url_for, make_response, send_from_directory, request, \
-    send_file
+from flask import Flask, redirect, flash, render_template, send_from_directory, request
 import subprocess
 import os
-from werkzeug.utils import secure_filename
 import secrets
-import socket
-import requests
 import time
-import threading
 
 
 # client IDs:
@@ -18,10 +13,6 @@ id_dict = dict(
     path='',
     init_url=''
 )
-
-
-def newclient():
-    return secrets.token_hex(15)
 
 
 # paths:
@@ -39,17 +30,15 @@ hostport = 5000
 
 
 # define Flask app:
-app = Flask(__name__, template_folder=rel_templates)
+app = Flask(__name__, template_folder=rel_templates,  static_url_path=inpath)
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 tmp_time = time.time()
 
 
-def bash_run(cmd):
-    subprocess.Popen(cmd,
-                     shell=True,
-                     executable='/bin/bash')
+def newclient():
+    return secrets.token_hex(15)
 
 
 def checkdirs():
@@ -64,11 +53,6 @@ def checkdirs():
         raise SystemExit
 
 
-@app.route('/')
-def home():
-    return render_template('home.jade', page='Home', tokenID='index')
-
-
 def uploader(usrpath):
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -80,17 +64,12 @@ def uploader(usrpath):
             return redirect(request.url)
         if file:
             f = request.files['file']
-            f.save(os.path.join(usrpath, f.filename))
+            f.save(os.path.join(usrpath, 'userfile'))
 
 
-def downloader(usr_dir):
-    try:
-        if len(os.listdir(usr_dir)) == 0:
-            for file in os.listdir(usr_dir):
-                if os.path.isfile(os.path.join(usr_dir, file)):
-                    return os.path.join(usr_dir, file)
-    except:
-        time.sleep(.1)
+@app.route('/')
+def home():
+    return render_template('home.jade', page='Home', tokenID='index')
 
 
 @app.route('/centkml', methods=['GET', 'POST'])
@@ -102,6 +81,12 @@ def centkml():
     uploader(usr_dir)
     return render_template('centroid.jade',
                            page='KML Centroid Generator',
-                           tokenID=usr_id,
-                           download=downloader(usr_dir))
+                           tokenID=usr_id)
 
+
+@app.route('/download/',  methods=['GET', 'POST'])
+def downloader():
+    req = request.form.get('name')
+    response = send_from_directory(os.path.join(inpath, req), filename='userfile')
+    response.headers["Content-Disposition"] = "attachment; filename=centroid.kml"
+    return response
