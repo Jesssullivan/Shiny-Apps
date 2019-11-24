@@ -7,6 +7,7 @@ import secrets
 import socket
 import requests
 import time
+import threading
 
 
 # client IDs:
@@ -82,19 +83,14 @@ def uploader(usrpath):
             f.save(os.path.join(usrpath, f.filename))
 
 
-def getfile(usr_dir):
-    for file in os.listdir(usr_dir):
-        if os.path.isfile(os.path.join(usr_dir, file)):
-            abspath = os.path.join(usr_dir, file)
-            return os.path.relpath(abspath)
-        else:
-            return False
-
-
 def downloader(usr_dir):
-    while getfile(usr_dir):
-        print('true @ downloader')
-        return getfile(usr_dir)
+    try:
+        if len(os.listdir(usr_dir)) == 0:
+            for file in os.listdir(usr_dir):
+                if os.path.isfile(os.path.join(usr_dir, file)):
+                    return os.path.join(usr_dir, file)
+    except:
+        time.sleep(.1)
 
 
 @app.route('/centkml', methods=['GET', 'POST'])
@@ -107,5 +103,5 @@ def centkml():
     return render_template('centroid.jade',
                            page='KML Centroid Generator',
                            tokenID=usr_id,
-                           download=os.path.relpath(downloader(usr_dir), os.curdir))
+                           download=downloader(usr_dir))
 
