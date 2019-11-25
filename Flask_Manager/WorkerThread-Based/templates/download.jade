@@ -5,11 +5,11 @@ html
         title Download
 
 br
-
+.main-content
 html
-    <form action="/download" method="post" name=name enctype="multipart/form-data">
+    <form action="/centdownload" method="post" name=name enctype="multipart/form-data">
     <input hidden type=text value=!{tokenID} name='name' />
-    <input type="submit" />
+    <input type="submit" value="Download" />
     </form>
 
-
+br

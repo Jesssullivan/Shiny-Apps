@@ -4,9 +4,8 @@ library(sf)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-input <- args[1]
-output <- args[2]
-
+input <- args[1]  # file path from flask
+output <- args[2]  # output directory
 
 server <- function(input, output) {
     datum <- input
@@ -34,8 +33,7 @@ server <- function(input, output) {
     cent_in <- as.matrix(t(sapply(2, func)))
     cent_sp <- SpatialPointsDataFrame(cent_in, df, proj4string=CRS("+proj=longlat +datum=WGS84"))
     # write out lat long as a new kml file
-    target_file <- paste(output, "centroid-", Sys.Date(), ".kml")
-    results <- writeOGR(cent_sp, dsn = target_file, layer = "", driver="KML")
+    results <- writeOGR(cent_sp, dsn = output, layer = "", driver="KML")
 }
 
 server(input, output)
