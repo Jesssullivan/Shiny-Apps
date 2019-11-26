@@ -147,7 +147,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return send_file('home.html')
+    return send_file('home2.html')
 
 
 @app.route('/default')

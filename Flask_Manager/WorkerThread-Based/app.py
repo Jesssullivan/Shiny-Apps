@@ -70,14 +70,22 @@ def uploader(usrpath):  # see Flask docs, essentially verbatim:
             f.save(os.path.join(usrpath, usrfile))
 
 
-def r_thread(infile, outfile, choice):
-    # writing to logs.txt, in case R logs are needed later
-    cmd = 'Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile + ' >> logs.txt'
-    v(str('running ' + choice + ' thread...'))
-    subprocess.Popen(cmd,
-                     shell=True,
-                     executable='/bin/bash',
-                     encoding='utf8')
+def r_thread(infile, outfile, choice, opt1, opt2):
+
+    cmd = str('Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile)
+
+    # assemble additional args if present:
+    if opt1 is not None:
+        if opt2 is not None:
+            cmd += str(' ' + opt2)
+        cmd += str(' ' + opt1)
+
+        v(str('running ' + choice + ' thread...'))
+
+        subprocess.Popen(cmd,
+                         shell=True,
+                         executable='/bin/bash',
+                         encoding='utf8')
 
 
 def force_dir_rm(path):  # used by garbage daemon
@@ -112,11 +120,13 @@ init_loop.start()
 class R_appThread(object):
     app = None
 
-    def __init__(self, outname, appchoice, templatepage, title):
+    def __init__(self, outname, appchoice, templatepage, title, opt1, opt2):
         self.templatepage = templatepage
         self.appchoice = appchoice
         self.outname = outname
         self.title = title
+        self.opt1 = opt1
+        self.opt2 = opt2
 
     def main(self):
 
@@ -131,7 +141,7 @@ class R_appThread(object):
         # while at url, run script after upload:
         if len(os.listdir(usr_dir)) > 0:
             """
-            # assuming R file takes two arguments- for example:
+            # assuming R file takes at least two arguments- for example:
             args <- commandArgs(trailingOnly = TRUE)
             input <- args[1]  # file path from Flask
             output <- args[2]  # output directory
@@ -153,7 +163,7 @@ def home():
 
 
 @app.route('/download', methods=['GET', 'POST'])
-def centdownload():
+def download():
     req = request.form.get('name')
     filename = request.form.get('outname')
     response = send_from_directory(os.path.join(inpath, req), filename=filename)
@@ -166,5 +176,28 @@ def centkml():
     cent = R_appThread(appchoice=os.path.join(r_apps, 'centkml.R'),
                        templatepage='centroid.jade',
                        outname='output.kml',
-                       title='KML Centroid Generator')
+                       title='KML Centroid Generator',
+                       opt1=None, opt2=None)
     return cent.main()
+
+
+@app.route('/kmlcsv', methods=['GET', 'POST'])
+def kmlcsv():
+    kmlcsv = R_appThread(appchoice=os.path.join(r_apps, 'kml2csv.R'),
+                       templatepage='kml2csv.jade',
+                       outname='output.csv',
+                       title='KML --> CSV Converter',
+                       opt1=None, opt2=None)
+    return kmlcsv.main()
+
+
+@app.route('/kmlsubset', methods=['GET', 'POST'])
+def kmlsubset():
+    opt1 = request.form.get('opt1')
+    opt2 = request.form.get('opt2')
+    kmlsubset = R_appThread(appchoice=os.path.join(r_apps, 'kml2csv.R'),
+                       templatepage='kml2csv.jade',
+                       outname='output.csv',
+                       title='KML --> CSV Converter',
+                       opt1=opt1, opt2=opt2)
+    return kmlsubset.main()
