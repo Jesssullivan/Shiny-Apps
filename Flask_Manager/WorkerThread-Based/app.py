@@ -1,3 +1,7 @@
+"""
+Organize application threads with Flask.
+Written by Jess Sullivan
+"""
 from flask import Flask, redirect, flash, render_template, send_from_directory, request
 import subprocess
 import os
@@ -10,11 +14,9 @@ verbose = True  # verbose logging?
 usrfile = 'usrfile'  # files should already be unique, each is in hashed dir
 usr_id = ''  # placeholder for usr hex value
 
-
 # paths:
 rootpath = os.path.abspath(os.curdir)
 inpath = os.path.join(rootpath, 'uploads')
-os.path.relpath(inpath)
 outpath = os.path.join(rootpath, 'downloads')
 templates = os.path.join(rootpath, 'templates')
 rel_templates = os.path.relpath('templates')
@@ -35,9 +37,10 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # recycle directories:
 live_app_list = {}
 start_time = time.time()
-collection_int = 30
+collection_int = 30  # max. lifetime of each app thread
 
 
+# verbose logging?
 def v(message):
     if verbose:
         print(message)
@@ -53,7 +56,7 @@ def newclient():
     return secrets.token_hex(15)
 
 
-def uploader(usrpath):  # see Flask docs, verbatim:
+def uploader(usrpath):  # see Flask docs, essentially verbatim:
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file part')
@@ -68,14 +71,19 @@ def uploader(usrpath):  # see Flask docs, verbatim:
 
 
 def r_thread(infile, outfile, choice):
+    # writing to logs.txt, in case R logs are needed later
     cmd = 'Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile + ' >> logs.txt'
+    v(str('running ' + choice + ' thread...'))
     subprocess.Popen(cmd,
                      shell=True,
                      executable='/bin/bash',
                      encoding='utf8')
 
 
-def force_dir_rm(path):
+def force_dir_rm(path):  # used by garbage daemon
+    # checking and removing user dirs from OS-
+    # assuming child threads may occasionally misbehave,
+    # best to avoid guessing the state of child threads here in Python
     subprocess.Popen(str('rm -rf ' + path),
                      shell=True,
                      executable='/bin/bash')
@@ -93,7 +101,7 @@ def garbageloop():
                     force_dir_rm(os.path.join(inpath, usr))
                     live_app_list.pop(usr)
                 except:
-                    v('Error while removing expired usr directory')
+                    v(str('Error while removing expired usr directory:  \n' + usr))
 
 
 # start garbageloop as daemon- operating as a child to Flask server:
@@ -101,8 +109,7 @@ init_loop = threading.Thread(target=garbageloop, daemon=True)
 init_loop.start()
 
 
-class RappThread(object):
-
+class R_appThread(object):
     app = None
 
     def __init__(self, outname, appchoice, templatepage, title):
@@ -123,6 +130,12 @@ class RappThread(object):
 
         # while at url, run script after upload:
         if len(os.listdir(usr_dir)) > 0:
+            """
+            # assuming R file takes two arguments- for example:
+            args <- commandArgs(trailingOnly = TRUE)
+            input <- args[1]  # file path from Flask
+            output <- args[2]  # output directory
+            """
             r_thread(infile=os.path.join(usr_dir, usrfile),
                      outfile=os.path.join(usr_dir, self.outname),
                      choice=self.appchoice)
@@ -139,9 +152,6 @@ def home():
     return render_template('home.jade', page='Home', tokenID='index')
 
 
-""" Centroid App: """  # TODO: need an app class or something to organize all the other apps
-
-
 @app.route('/download', methods=['GET', 'POST'])
 def centdownload():
     req = request.form.get('name')
@@ -153,8 +163,8 @@ def centdownload():
 
 @app.route('/centkml', methods=['GET', 'POST'])
 def centkml():
-    cent = RappThread(appchoice=os.path.join(r_apps, 'centkml.R'),
-                      templatepage='centroid.jade',
-                      outname='output.kml',
-                      title='KML Centroid Generator')
+    cent = R_appThread(appchoice=os.path.join(r_apps, 'centkml.R'),
+                       templatepage='centroid.jade',
+                       outname='output.kml',
+                       title='KML Centroid Generator')
     return cent.main()
