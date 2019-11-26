@@ -35,7 +35,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # recycle directories:
 live_app_list = {}
 start_time = time.time()
-collection_int = 4
+collection_int = 30
 
 
 def v(message):
@@ -101,6 +101,39 @@ init_loop = threading.Thread(target=garbageloop, daemon=True)
 init_loop.start()
 
 
+class RappThread(object):
+
+    app = None
+
+    def __init__(self, outname, appchoice, templatepage, title):
+        self.templatepage = templatepage
+        self.appchoice = appchoice
+        self.outname = outname
+        self.title = title
+
+    def main(self):
+
+        usr_id = newclient()
+        usr_dir = os.path.join(inpath, usr_id)
+
+        if not os.path.exists(usr_dir):
+            os.mkdir(usr_dir)
+
+        uploader(usr_dir)
+
+        # while at url, run script after upload:
+        if len(os.listdir(usr_dir)) > 0:
+            r_thread(infile=os.path.join(usr_dir, usrfile),
+                     outfile=os.path.join(usr_dir, self.outname),
+                     choice=self.appchoice)
+
+        # template is returned immediately, regardless of upload:
+        return render_template(self.templatepage,
+                               page=self.title,
+                               tokenID=usr_id,
+                               outname=self.outname)
+
+
 @app.route('/')
 def home():
     return render_template('home.jade', page='Home', tokenID='index')
@@ -109,34 +142,19 @@ def home():
 """ Centroid App: """  # TODO: need an app class or something to organize all the other apps
 
 
-@app.route('/centdownload', methods=['GET', 'POST'])
+@app.route('/download', methods=['GET', 'POST'])
 def centdownload():
     req = request.form.get('name')
-    response = send_from_directory(os.path.join(inpath, req), filename='centroid.kml')
-    response.headers["Content-Disposition"] = "attachment; filename=centroid.kml"
+    filename = request.form.get('outname')
+    response = send_from_directory(os.path.join(inpath, req), filename=filename)
+    response.headers["Content-Disposition"] = str('attachment; filename=' + filename)
     return response
 
 
 @app.route('/centkml', methods=['GET', 'POST'])
 def centkml():
-    outname = 'centroid.kml'
-    usr_id = newclient()
-    usr_dir = os.path.join(inpath, usr_id)
-
-    if not os.path.exists(usr_dir):
-        os.mkdir(usr_dir)
-
-    # prepare to receive upload:
-    uploader(usr_dir)
-
-    # while at url, run script after upload:
-    if len(os.listdir(usr_dir)) > 0:
-        r_thread(infile=os.path.join(usr_dir, usrfile),
-                 outfile=os.path.join(usr_dir, outname),
-                 choice='centkml.R')
-
-    # template is returned immediately, regardless of upload:
-    return render_template('centroid.jade',
-                           page='KML Centroid Generator',
-                           tokenID=usr_id)
-
+    cent = RappThread(appchoice=os.path.join(r_apps, 'centkml.R'),
+                      templatepage='centroid.jade',
+                      outname='output.kml',
+                      title='KML Centroid Generator')
+    return cent.main()

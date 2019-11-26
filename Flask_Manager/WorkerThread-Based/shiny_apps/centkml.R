@@ -3,7 +3,6 @@ library(rgdal)
 library(sf)
 
 args <- commandArgs(trailingOnly = TRUE)
-
 input <- args[1]  # file path from flask
 output <- args[2]  # output directory
 
@@ -37,3 +36,7 @@ server <- function(input, output) {
 }
 
 server(input, output)
+
+# close from within R if possible:
+Sys.sleep(2)
+quit()

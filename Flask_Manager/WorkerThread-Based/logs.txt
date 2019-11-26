@@ -1,0 +1,94 @@
+Reading layer `cb_2014_us_necta_500k' from data source `/home/jessdev/git/Shiny-Apps/Flask_Manager/WorkerThread-Based/uploads/321a779803ab387818c630983be584/usrfile' using driver `KML'
+Simple feature collection with 38 features and 2 fields
+geometry type:  MULTIPOLYGON
+dimension:      XYZ
+bbox:           xmin: -73.72777 ymin: 40.98014 xmax: -68.18101 ymax: 45.66082
+epsg (SRID):    4326
+proj4string:    +proj=longlat +datum=WGS84 +no_defs
+Simple feature collection with 38 features and 2 fields
+geometry type:  MULTIPOLYGON
+dimension:      XYZ
+bbox:           xmin: -73.72777 ymin: 40.98014 xmax: -68.18101 ymax: 45.66082
+epsg (SRID):    4326
+proj4string:    +proj=longlat +datum=WGS84 +no_defs
+First 10 features:
+                                       Name
+1                                 Athol, MA
+2                               Augusta, ME
+3                                Bangor, ME
+4                       Barnstable Town, MA
+5            Boston-Cambridge-Nashua, MA-NH
+6           Bridgeport-Stamford-Norwalk, CT
+7                             Brunswick, ME
+8           Burlington-South Burlington, VT
+9  Hartford-West Hartford-East Hartford, CT
+10                      Lewiston-Auburn, ME
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Description
+1                                  <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>704</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70450</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70450</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70450</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Athol, MA</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>315018262</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>41486588</td> </tr></table></center>
+2                              <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>706</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70600</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70600</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70600</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Augusta, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1694651472</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>182344465</td> </tr></table></center>
+3                               <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>707</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70750</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70750</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70750</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Bangor, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>4155073301</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>187671625</td> </tr></table></center>
+4                      <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>709</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70900</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70900</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70900</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Barnstable Town, MA</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1069544758</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>341229712</td> </tr></table></center>
+5          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>716</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>71650</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US71650</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>71650</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Boston-Cambridge-Nashua, MA-NH</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>8714523522</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>1041230897</td> </tr></table></center>
+6          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>719</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>71950</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US71950</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>71950</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Bridgeport-Stamford-Norwalk, CT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1514318741</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>237725378</td> </tr></table></center>
+7                             <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>722</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>72250</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US72250</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>72250</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Brunswick, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>921696307</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>611251623</td> </tr></table></center>
+8          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>724</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>72400</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US72400</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>72400</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Burlington-South Burlington, VT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>2751413808</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>585962925</td> </tr></table></center>
+9  <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>734</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>73450</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US73450</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>73450</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Hartford-West Hartford-East Hartford, CT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>4044176953</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>96695082</td> </tr></table></center>
+10                      <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>746</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>74650</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US74650</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>74650</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Lewiston-Auburn, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1396821101</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>87760998</td> </tr></table></center>
+                         geometry
+1  MULTIPOLYGON Z (((-72.3647 ...
+2  MULTIPOLYGON Z (((-70.13259...
+3  MULTIPOLYGON Z (((-69.30552...
+4  MULTIPOLYGON Z (((-70.80148...
+5  MULTIPOLYGON Z (((-70.58029...
+6  MULTIPOLYGON Z (((-73.36424...
+7  MULTIPOLYGON Z (((-69.76031...
+8  MULTIPOLYGON Z (((-73.39963...
+9  MULTIPOLYGON Z (((-73.14135...
+10 MULTIPOLYGON Z (((-70.48529...
+Reading layer `cb_2014_us_necta_500k' from data source `/home/jessdev/git/Shiny-Apps/Flask_Manager/WorkerThread-Based/uploads/a9aa446a036d4c82c4c9a6a6448287/usrfile' using driver `KML'
+Simple feature collection with 38 features and 2 fields
+geometry type:  MULTIPOLYGON
+dimension:      XYZ
+bbox:           xmin: -73.72777 ymin: 40.98014 xmax: -68.18101 ymax: 45.66082
+epsg (SRID):    4326
+proj4string:    +proj=longlat +datum=WGS84 +no_defs
+Simple feature collection with 38 features and 2 fields
+geometry type:  MULTIPOLYGON
+dimension:      XYZ
+bbox:           xmin: -73.72777 ymin: 40.98014 xmax: -68.18101 ymax: 45.66082
+epsg (SRID):    4326
+proj4string:    +proj=longlat +datum=WGS84 +no_defs
+First 10 features:
+                                       Name
+1                                 Athol, MA
+2                               Augusta, ME
+3                                Bangor, ME
+4                       Barnstable Town, MA
+5            Boston-Cambridge-Nashua, MA-NH
+6           Bridgeport-Stamford-Norwalk, CT
+7                             Brunswick, ME
+8           Burlington-South Burlington, VT
+9  Hartford-West Hartford-East Hartford, CT
+10                      Lewiston-Auburn, ME
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Description
+1                                  <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>704</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70450</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70450</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70450</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Athol, MA</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>315018262</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>41486588</td> </tr></table></center>
+2                              <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>706</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70600</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70600</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70600</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Augusta, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1694651472</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>182344465</td> </tr></table></center>
+3                               <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>707</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70750</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70750</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70750</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Bangor, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>4155073301</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>187671625</td> </tr></table></center>
+4                      <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>709</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>70900</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US70900</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>70900</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Barnstable Town, MA</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1069544758</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>341229712</td> </tr></table></center>
+5          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>716</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>71650</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US71650</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>71650</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Boston-Cambridge-Nashua, MA-NH</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>8714523522</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>1041230897</td> </tr></table></center>
+6          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>719</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>71950</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US71950</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>71950</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Bridgeport-Stamford-Norwalk, CT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1514318741</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>237725378</td> </tr></table></center>
+7                             <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>722</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>72250</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US72250</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>72250</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Brunswick, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M6</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>921696307</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>611251623</td> </tr></table></center>
+8          <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>724</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>72400</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US72400</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>72400</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Burlington-South Burlington, VT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>2751413808</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>585962925</td> </tr></table></center>
+9  <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>734</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>73450</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US73450</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>73450</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Hartford-West Hartford-East Hartford, CT</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>4044176953</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>96695082</td> </tr></table></center>
+10                      <center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3"> <th>CNECTAFP</th> <td>746</td> </tr><tr bgcolor=""> <th>NECTAFP</th> <td>74650</td> </tr><tr bgcolor="#E3E3F3"> <th>AFFGEOID</th> <td>350M200US74650</td> </tr><tr bgcolor=""> <th>GEOID</th> <td>74650</td> </tr><tr bgcolor="#E3E3F3"> <th>NAME</th> <td>Lewiston-Auburn, ME</td> </tr><tr bgcolor=""> <th>LSAD</th> <td>M5</td> </tr><tr bgcolor="#E3E3F3"> <th>ALAND</th> <td>1396821101</td> </tr><tr bgcolor=""> <th>AWATER</th> <td>87760998</td> </tr></table></center>
+                         geometry
+1  MULTIPOLYGON Z (((-72.3647 ...
+2  MULTIPOLYGON Z (((-70.13259...
+3  MULTIPOLYGON Z (((-69.30552...
+4  MULTIPOLYGON Z (((-70.80148...
+5  MULTIPOLYGON Z (((-70.58029...
+6  MULTIPOLYGON Z (((-73.36424...
+7  MULTIPOLYGON Z (((-69.76031...
+8  MULTIPOLYGON Z (((-73.39963...
+9  MULTIPOLYGON Z (((-73.14135...
+10 MULTIPOLYGON Z (((-70.48529...
