@@ -25,8 +25,7 @@ rel_r_apps = os.path.relpath(r_apps)
 
 # url:
 hostname = '127.0.0.1'
-hostport = 5001
-
+hostport = 5000
 
 # define Flask app:
 app = Flask(__name__, template_folder=rel_templates, static_url_path=inpath)
@@ -39,7 +38,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # recycle directories:
 live_app_list = {}
 start_time = time.time()
-collection_int = 120  # max. lifetime of each app thread
+collection_int = 60  # max. lifetime of each app thread
 
 
 # verbose logging?
@@ -101,8 +100,23 @@ init_loop = threading.Thread(target=garbageloop, daemon=True)
 init_loop.start()
 
 
-def r_thread(infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None):
+def isworking(proc):
 
+    cmd = str('ps -q ' + str(proc) + ' -o state --no-headers')
+
+    check = subprocess.Popen(cmd,
+                             shell=True,
+                             executable='/bin/bash',
+                             encoding='utf8',
+                             stdout=subprocess.PIPE)
+
+    if check.stdout.read()[0] != 'S':
+        return False
+    else:
+        return True
+
+
+def r_thread(infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None):
     cmd = str('Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile)
 
     for opt in [opt1, opt2, opt3, opt4]:
@@ -111,10 +125,11 @@ def r_thread(infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None
 
     v(str('running command:  \n' + cmd))
 
-    subprocess.Popen(cmd,
-                     shell=True,
-                     executable='/bin/bash',
-                     encoding='utf8')
+    proc = subprocess.Popen(cmd,
+                            shell=True,
+                            executable='/bin/bash',
+                            encoding='utf8')
+    return proc.pid
 
 
 class R_appThread(object):
@@ -137,7 +152,6 @@ class R_appThread(object):
         usr_dir = os.path.join(inpath, usr_id)
 
         if not os.path.exists(usr_dir):
-
             os.mkdir(usr_dir)
 
         uploader(usr_dir)
