@@ -28,15 +28,10 @@ server <- function(input, output) {
       return(coords)
     }
     # generate centroid with geosphere function from table of coords
-    df <- data.frame(matrix(nrow = 1, ncol = 2))
-    cent_in <- as.matrix(t(sapply(2, func)))
-    cent_sp <- SpatialPointsDataFrame(cent_in, df, proj4string=CRS("+proj=longlat +datum=WGS84"))
-    # write out lat long as a new kml file
-    results <- writeOGR(cent_sp, dsn = output, layer = "", driver="KML")
+
 }
 
 server(input, output)
-
 # close from within R if possible:
 Sys.sleep(2)
 quit()

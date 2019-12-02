@@ -1,5 +1,5 @@
 """
-Organize application threads with Flask.
+Flask web app server
 Written by Jess Sullivan
 """
 from flask import Flask, redirect, flash, render_template, send_from_directory, request
@@ -21,10 +21,12 @@ outpath = os.path.join(rootpath, 'downloads')
 templates = os.path.join(rootpath, 'templates')
 rel_templates = os.path.relpath('templates')
 r_apps = os.path.join(rootpath, 'shiny_apps')
+rel_r_apps = os.path.relpath(r_apps)
 
 # url:
 hostname = '127.0.0.1'
-hostport = 5000
+hostport = 5001
+
 
 # define Flask app:
 app = Flask(__name__, template_folder=rel_templates, static_url_path=inpath)
@@ -37,7 +39,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 # recycle directories:
 live_app_list = {}
 start_time = time.time()
-collection_int = 30  # max. lifetime of each app thread
+collection_int = 120  # max. lifetime of each app thread
 
 
 # verbose logging?
@@ -56,7 +58,7 @@ def newclient():
     return secrets.token_hex(15)
 
 
-def uploader(usrpath):  # see Flask docs, essentially verbatim:
+def uploader(usrpath):  # see Flask docs
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file part')
@@ -68,24 +70,6 @@ def uploader(usrpath):  # see Flask docs, essentially verbatim:
         if file:
             f = request.files['file']
             f.save(os.path.join(usrpath, usrfile))
-
-
-def r_thread(infile, outfile, choice, opt1, opt2):
-
-    cmd = str('Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile)
-
-    # assemble additional args if present:
-    if opt1 is not None:
-        if opt2 is not None:
-            cmd += str(' ' + opt2)
-        cmd += str(' ' + opt1)
-
-        v(str('running ' + choice + ' thread...'))
-
-        subprocess.Popen(cmd,
-                         shell=True,
-                         executable='/bin/bash',
-                         encoding='utf8')
 
 
 def force_dir_rm(path):  # used by garbage daemon
@@ -117,16 +101,35 @@ init_loop = threading.Thread(target=garbageloop, daemon=True)
 init_loop.start()
 
 
-class R_appThread(object):
-    app = None
+def r_thread(infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None):
 
-    def __init__(self, outname, appchoice, templatepage, title, opt1, opt2):
+    cmd = str('Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile)
+
+    for opt in [opt1, opt2, opt3, opt4]:
+        if opt is not None:
+            cmd += str(' ' + opt)
+
+    v(str('running command:  \n' + cmd))
+
+    subprocess.Popen(cmd,
+                     shell=True,
+                     executable='/bin/bash',
+                     encoding='utf8')
+
+
+class R_appThread(object):
+
+    def __init__(self, outname, appchoice, templatepage, title,
+                 opt1=None, opt2=None, opt3=None, opt4=None):
+
         self.templatepage = templatepage
         self.appchoice = appchoice
         self.outname = outname
         self.title = title
         self.opt1 = opt1
         self.opt2 = opt2
+        self.opt3 = opt3
+        self.opt4 = opt4
 
     def main(self):
 
@@ -134,6 +137,7 @@ class R_appThread(object):
         usr_dir = os.path.join(inpath, usr_id)
 
         if not os.path.exists(usr_dir):
+
             os.mkdir(usr_dir)
 
         uploader(usr_dir)
@@ -141,16 +145,20 @@ class R_appThread(object):
         # while at url, run script after upload:
         if len(os.listdir(usr_dir)) > 0:
             """
-            # assuming R file takes at least two arguments- for example:
+            # assuming worker file takes at least two arguments- for example in R:
             args <- commandArgs(trailingOnly = TRUE)
             input <- args[1]  # file path from Flask
             output <- args[2]  # output directory
             """
             r_thread(infile=os.path.join(usr_dir, usrfile),
                      outfile=os.path.join(usr_dir, self.outname),
-                     choice=self.appchoice)
+                     choice=self.appchoice,
+                     opt1=self.opt1,
+                     opt2=self.opt2,
+                     opt3=self.opt3,
+                     opt4=self.opt4)
 
-        # template is returned immediately, regardless of upload:
+            # template is returned immediately, regardless of upload:
         return render_template(self.templatepage,
                                page=self.title,
                                tokenID=usr_id,
@@ -174,30 +182,35 @@ def download():
 @app.route('/centkml', methods=['GET', 'POST'])
 def centkml():
     cent = R_appThread(appchoice=os.path.join(r_apps, 'centkml.R'),
-                       templatepage='centroid.jade',
+                       templatepage='generic.jade',
                        outname='output.kml',
-                       title='KML Centroid Generator',
-                       opt1=None, opt2=None)
+                       title='KML Centroid Generator')
     return cent.main()
 
 
 @app.route('/kmlcsv', methods=['GET', 'POST'])
 def kmlcsv():
     kmlcsv = R_appThread(appchoice=os.path.join(r_apps, 'kml2csv.R'),
-                       templatepage='kml2csv.jade',
-                       outname='output.csv',
-                       title='KML --> CSV Converter',
-                       opt1=None, opt2=None)
+                         templatepage='generic.jade',
+                         outname='output.csv',
+                         title='KML --> CSV Converter')
     return kmlcsv.main()
 
 
-@app.route('/kmlsubset', methods=['GET', 'POST'])
-def kmlsubset():
-    opt1 = request.form.get('opt1')
-    opt2 = request.form.get('opt2')
-    kmlsubset = R_appThread(appchoice=os.path.join(r_apps, 'kml2csv.R'),
-                       templatepage='kml2csv.jade',
-                       outname='output.csv',
-                       title='KML --> CSV Converter',
-                       opt1=opt1, opt2=opt2)
-    return kmlsubset.main()
+@app.route('/kmlshp', methods=['GET', 'POST'])
+def kmlshp():
+    kmlshp = R_appThread(appchoice=os.path.join(r_apps, 'kml2shp.R'),
+                         templatepage='generic.jade',
+                         outname='output.zip',
+                         opt1='tmp.shp',
+                         title='KML --> SHP Converter')
+    return kmlshp.main()
+
+
+@app.route('/demstl', methods=['GET', 'POST'])
+def demstl():
+    demstl = R_appThread(appchoice=os.path.join(r_apps, 'dem2stl.R'),
+                         templatepage='generic.jade',
+                         outname='output.stl',
+                         title='DEM --> STL Converter')
+    return demstl.main()

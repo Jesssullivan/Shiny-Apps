@@ -20,7 +20,7 @@ server <- function(input, output) {
     rate <- 1:it
     data <- lapply(FUN = iterate_layers, rate)
     results <- ldply(data)
-    write(results, output)
+    write.csv(results, output)
 }
 
 server(input, output)
