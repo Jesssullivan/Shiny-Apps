@@ -3,11 +3,14 @@ Flask web app server
 Written by Jess Sullivan
 """
 from flask import Flask, redirect, flash, render_template, send_from_directory, request
+from datetime import datetime
 import subprocess
 import os
 import secrets
 import time
 import threading
+import zipfile
+from shutil import move
 
 # global:
 verbose = True  # verbose logging?
@@ -51,10 +54,6 @@ def v(message):
 if not os.path.exists(inpath):
     v(str('creating upload path ... '))
     os.mkdir(inpath)
-
-
-def newclient():
-    return secrets.token_hex(15)
 
 
 def uploader(usrpath):  # see Flask docs
@@ -101,7 +100,6 @@ init_loop.start()
 
 
 def isworking(proc):
-
     cmd = str('ps -q ' + str(proc) + ' -o state --no-headers')
 
     check = subprocess.Popen(cmd,
@@ -116,8 +114,22 @@ def isworking(proc):
         return True
 
 
-def r_thread(infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None):
-    cmd = str('Rscript ' + os.path.join(r_apps, choice) + ' ' + infile + ' ' + outfile)
+def newclient():
+    return secrets.token_hex(15)
+
+
+def r_thread(usr_dir, infile, outfile, choice, opt1=None, opt2=None, opt3=None, opt4=None):
+    logfile = os.path.join(usr_dir, 'logs.txt')
+
+    subprocess.Popen(str('touch ' + logfile),
+                     shell=True,
+                     executable='/bin/bash',
+                     encoding='utf8')
+
+    cmd = str('Rscript ' + os.path.join(r_apps, choice) +
+              ' ' + infile +
+              ' ' + outfile +
+              ' >> ' + logfile)
 
     for opt in [opt1, opt2, opt3, opt4]:
         if opt is not None:
@@ -164,7 +176,8 @@ class R_appThread(object):
             input <- args[1]  # file path from Flask
             output <- args[2]  # output directory
             """
-            r_thread(infile=os.path.join(usr_dir, usrfile),
+            r_thread(usr_dir=usr_dir,
+                     infile=os.path.join(usr_dir, usrfile),
                      outfile=os.path.join(usr_dir, self.outname),
                      choice=self.appchoice,
                      opt1=self.opt1,
@@ -179,6 +192,13 @@ class R_appThread(object):
                                outname=self.outname)
 
 
+def archiver(dl_filepath, usr_path):
+    archive = zipfile.ZipFile(dl_filepath, "w", zipfile.ZIP_DEFLATED)
+    for f in os.listdir(usr_path):
+        archive.write(os.path.join(usr_path, f), arcname=f)
+    archive.close()
+
+
 @app.route('/')
 def home():
     return render_template('home.jade', page='Home', tokenID='index')
@@ -187,9 +207,14 @@ def home():
 @app.route('/download', methods=['GET', 'POST'])
 def download():
     req = request.form.get('name')
-    filename = request.form.get('outname')
-    response = send_from_directory(os.path.join(inpath, req), filename=filename)
-    response.headers["Content-Disposition"] = str('attachment; filename=' + filename)
+    usr_path = os.path.join(inpath, req)
+    print(usr_path)
+    dl_filename = str('output_' + datetime.today().strftime('%Y-%m-%d') + '.zip')
+    dl_filepath = os.path.join(usr_path, dl_filename)
+    print(dl_filepath)
+    archiver(dl_filepath, usr_path)
+    response = send_from_directory(os.path.join(inpath, req), filename=dl_filename)
+    response.headers["Content-Disposition"] = str('attachment; filename=' + dl_filename)
     return response
 
 
@@ -215,7 +240,7 @@ def kmlcsv():
 def kmlshp():
     kmlshp = R_appThread(appchoice=os.path.join(r_apps, 'kml2shp.R'),
                          templatepage='generic.jade',
-                         outname='output.zip',
+                         outname='shp.zip',
                          opt1='tmp.shp',
                          title='KML --> SHP Converter')
     return kmlshp.main()
