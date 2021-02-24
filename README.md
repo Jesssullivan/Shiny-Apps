@@ -21,9 +21,10 @@ See /[Docker-App](https://github.com/Jesssullivan/Shiny-Apps/tree/master/Docker-
 *Misc*
 
 
-[![ ](https://img.youtube.com/vi/79XI5FTxD2E/0.jpg)](https://www.youtube.com/watch?v=79XI5FTxD2E)
 
-[![ ](https://img.youtube.com/vi/sf7rDg86CJE/0.jpg)](https://www.youtube.com/watch?v=sf7rDg86CJE)
+
+| [![ ](https://img.youtube.com/vi/79XI5FTxD2E/0.jpg)](https://www.youtube.com/watch?v=79XI5FTxD2E) | [![ ](https://img.youtube.com/vi/sf7rDg86CJE/0.jpg)](https://www.youtube.com/watch?v=sf7rDg86CJE) |
+|---|---|
 
 
 *See http://www.transscendsurvival.org/ for related info on my blog*
