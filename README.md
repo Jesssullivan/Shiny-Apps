@@ -18,7 +18,7 @@ See /[Docker-App](https://github.com/Jesssullivan/Shiny-Apps/tree/master/Docker-
 - - -
 
 
-*Misc*
+*Some more R / Shiny demos:*
 
 
 
